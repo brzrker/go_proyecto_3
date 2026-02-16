@@ -13,20 +13,24 @@ import (
 
 func main() {
 	mux := mux.NewRouter()
+	//Rutas
 	mux.HandleFunc("/", rutas.Home)
-
+	mux.HandleFunc("/nosotros", rutas.Nosotros)
+	mux.HandleFunc("/parametros/{id:.*}/{slug:.*}", rutas.Parametros)
+	mux.HandleFunc("/parametros-querystring", rutas.ParametrosQueryString)
+	// Ejecucion de servidor
 	errorVariables := godotenv.Load()
 	if errorVariables != nil {
 		panic(errorVariables)
 	}
 
 	server := &http.Server{
-		Addr: "192.168.1.88:"+ os.Getenv("PORT"),
+		Addr: "192.168.1.84:"+ os.Getenv("PORT"),
 		Handler: mux,
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout: 15 * time.Second,
 	}
-	fmt.Println("corriendo servidor desde http://192.168.1.88:"+ os.Getenv("PORT"))
+	fmt.Println("corriendo servidor desde http://192.168.1.84:"+ os.Getenv("PORT"))
 	log.Fatal(server.ListenAndServe())
 }
 
