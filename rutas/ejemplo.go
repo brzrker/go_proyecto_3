@@ -1,18 +1,65 @@
 package rutas
 
 import (
+	//"fmt"
+	"html/template"
 	"net/http"
-	"fmt"
 	"github.com/gorilla/mux"
 )
 
+func Home(response http.ResponseWriter, request *http.Request) { // En algunos codigos se le llama w (response) y r (request), pero es lo mismo
+	template, err := template.ParseFiles("templates/ejemplo/home.html")
+	if err != nil {
+		panic(err)
+	} else {
+		template.Execute(response, nil)
+	}
+}
+
+func Nosotros(response http.ResponseWriter, request *http.Request) {
+	template, err := template.ParseFiles("templates/ejemplo/nosotros.html")
+	if err != nil {
+		panic(err)
+	} else {
+		template.Execute(response, nil)
+	}
+}
+
+func Parametros(response http.ResponseWriter, request *http.Request) {
+	template, err := template.ParseFiles("templates/ejemplo/parametros.html")
+	vars := mux.Vars(request)
+	data := map[string]string{
+		"id":    vars["id"],
+		"slug":  vars["slug"],
+	}
+	if err != nil {
+		panic(err)
+	} else {
+		template.Execute(response, data)
+	}
+}
+
+func ParametrosQueryString(response http.ResponseWriter, request *http.Request) {
+	template, err := template.ParseFiles("templates/ejemplo/parametros_querystring.html")
+	data := map[string]string{
+		"id": 	request.URL.Query().Get("id"),
+		"slug": request.URL.Query().Get("slug"),
+	}
+	if err != nil {
+		panic(err)
+	} else {
+		template.Execute(response, data)
+	}
+}
+
+/* 
 func Home(response http.ResponseWriter, request *http.Request) {
 	fmt.Fprintln(response, "hola mundo desde golang")
 }
 
 func Nosotros(response http.ResponseWriter, request *http.Request) {
 	fmt.Println("Test en la terminal con fresh")
-	fmt.Fprintln(response, "Sobre Nosotros con ñanduuu")
+	fmt.Fprintln(response, "Sobre Nosotros")
 }
 
 func Parametros(response http.ResponseWriter, request *http.Request) {
@@ -31,3 +78,4 @@ func ParametrosQueryString(response http.ResponseWriter, request *http.Request) 
 	fmt.Fprintln(response, "-------------------------------------------")
 	fmt.Fprintf(response, "id = %s | slug = %s", id, slug)
 }
+ */
