@@ -51,6 +51,34 @@ func ParametrosQueryString(response http.ResponseWriter, request *http.Request) 
 		template.Execute(response, data)
 	}
 }
+type Habilidad struct {
+	Nombre string
+}
+
+type Datos struct {
+	Nombre string
+	Edad int
+	Perfil int
+	Habilidades []Habilidad
+}
+
+func Estructuras(response http.ResponseWriter, request *http.Request) { // En algunos codigos se le llama w (response) y r (request), pero es lo mismo
+	template, _ := template.ParseFiles("template/ejemplo/estructuras.html")
+	habilidad1 := Habilidad{"Inteligencia"}
+	habilidad2 := Habilidad{"Deportes"}
+	habilidad3 := Habilidad{"Cantar"}
+	habilidades := []Habilidad{habilidad1, habilidad2, habilidad3}
+
+	template.Execute(response, Datos{"Norman", 30, 2, habilidades})
+	/* 
+		template, err := template.ParseFiles("templates/ejemplo/estructuras.html")
+		if err != nil {
+			panic(err)
+		} else {
+			template.Execute(response, Datos{"Norman", 30, 2})
+		} 
+	*/
+}
 
 /* 
 func Home(response http.ResponseWriter, request *http.Request) {
