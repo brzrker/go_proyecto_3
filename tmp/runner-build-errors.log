@@ -1,0 +1,3 @@
+# proyecto_3/rutas
+rutas\ejemplo.go:74:2: declared and not used: abilidades
+rutas\ejemplo.go:76:87: undefined: habilidades
