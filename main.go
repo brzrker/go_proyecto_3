@@ -19,6 +19,12 @@ func main() {
 	mux.HandleFunc("/parametros/{id:.*}/{slug:.*}", rutas.Parametros)
 	mux.HandleFunc("/parametros-querystring", rutas.ParametrosQueryString)
 	mux.HandleFunc("/estructuras", rutas.Estructuras)
+
+	// Archivos estaticos
+	s := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
+	mux.PathPrefix("/static/").Handler(s)
+
+
 	// Ejecucion de servidor
 	errorVariables := godotenv.Load()
 	if errorVariables != nil {

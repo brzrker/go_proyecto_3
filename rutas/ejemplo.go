@@ -63,7 +63,7 @@ type Datos struct {
 }
 
 func Estructuras(response http.ResponseWriter, request *http.Request) { // En algunos codigos se le llama w (response) y r (request), pero es lo mismo
-	template, _ := template.ParseFiles("template/ejemplo/estructuras.html")
+	template, _ := template.ParseFiles("templates/ejemplo/estructuras.html")
 	habilidad1 := Habilidad{"Inteligencia"}
 	habilidad2 := Habilidad{"Deportes"}
 	habilidad3 := Habilidad{"Cantar"}
