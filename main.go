@@ -13,6 +13,7 @@ import (
 
 func main() {
 	mux := mux.NewRouter()
+
 	//Rutas
 	mux.HandleFunc("/", rutas.Home)
 	mux.HandleFunc("/nosotros", rutas.Nosotros)
@@ -20,10 +21,26 @@ func main() {
 	mux.HandleFunc("/parametros-querystring", rutas.ParametrosQueryString)
 	mux.HandleFunc("/estructuras", rutas.Estructuras)
 
+	// Formulario
+	mux.HandleFunc("/formulario", rutas.Formulario_get)
+	mux.HandleFunc("/formulario-post", rutas.Formulario_post).Methods("POST")
+	mux.HandleFunc("/formulario/upload", rutas.Formulario_upload)
+	mux.HandleFunc("/formulario/upload-post", rutas.Formulario_upload_post).Methods("POST")
+
+	// Recursos utiles
+	mux.HandleFunc("/recursos-utiles", rutas.Recursos_utiles_get)
+	mux.HandleFunc("/recursos-utiles/pdf", rutas.Recursos_utiles_pdf)
+	mux.HandleFunc("/recursos-utiles/pdf-generar", rutas.Recursos_utiles_pdf_generar)
+	mux.HandleFunc("/recursos-utiles/excel", rutas.Recursos_utiles_excel)
+	mux.HandleFunc("/recursos-utiles/qr", rutas.Recursos_utiles_qr)
+	mux.HandleFunc("/recursos-utiles/enviar-correo", rutas.Recursos_utiles_enviar_correo)
+
 	// Archivos estaticos
 	s := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	mux.PathPrefix("/static/").Handler(s)
 
+	// Manejo de errores
+	mux.NotFoundHandler = mux.NewRoute().HandlerFunc(rutas.Pagina404).GetHandler()
 
 	// Ejecucion de servidor
 	errorVariables := godotenv.Load()

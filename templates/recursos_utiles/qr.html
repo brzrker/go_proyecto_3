@@ -1,0 +1,16 @@
+{{ template "header" }}
+
+    <main class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/recursos-utiles">Recursos Útiles</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Generar QR</li>
+            </ol>
+        </nav>
+        <h1>Generar QR</h1>
+        <!-- {{ .imagenQR }} -->
+        <img src="data:image/png;base64,{{ .imagenQR }}" alt="">
+    </main>
+
+{{ template "footer" }}

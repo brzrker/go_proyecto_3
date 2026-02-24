@@ -1,55 +1,54 @@
 package rutas
 
 import (
-	//"fmt"
 	"html/template"
 	"net/http"
+	"proyecto_3/utilidades"
 	"github.com/gorilla/mux"
 )
 
-func Home(response http.ResponseWriter, request *http.Request) { // En algunos codigos se le llama w (response) y r (request), pero es lo mismo
-	template, err := template.ParseFiles("templates/ejemplo/home.html")
-	if err != nil {
-		panic(err)
-	} else {
-		template.Execute(response, nil)
-	}
+func Home(response http.ResponseWriter, request *http.Request) { 
+	// En algunos codigos se le llama w (response) y r (request), pero es lo mismo
+	
+	template := template.Must(template.ParseFiles("templates/ejemplo/home.html", utilidades.Frontend))
+	template.Execute(response, nil)
+
+	// La función Must se utiliza para manejar errores de forma más sencilla. Si ocurre un error al analizar los archivos de plantilla, 
+	// Must hará que el programa se detenga y muestre el error en lugar de devolverlo como un valor. 
+	// Esto es útil para asegurarse de que las plantillas se carguen correctamente antes de continuar con la ejecución del programa.
+
+	/*	Codigo sin usar template.Must
+		template, err := template.ParseFiles("templates/ejemplo/home.html", "templates/layout/base.html")
+		if err != nil {
+			panic(err)
+		} else {
+			template.Execute(response, nil)
+		}
+	*/
 }
 
 func Nosotros(response http.ResponseWriter, request *http.Request) {
-	template, err := template.ParseFiles("templates/ejemplo/nosotros.html")
-	if err != nil {
-		panic(err)
-	} else {
-		template.Execute(response, nil)
-	}
+	template := template.Must(template.ParseFiles("templates/ejemplo/nosotros.html", utilidades.Frontend))
+	template.Execute(response, nil)
 }
 
 func Parametros(response http.ResponseWriter, request *http.Request) {
-	template, err := template.ParseFiles("templates/ejemplo/parametros.html")
+	template := template.Must(template.ParseFiles("templates/ejemplo/parametros.html", utilidades.Frontend))
 	vars := mux.Vars(request)
 	data := map[string]string{
 		"id":    vars["id"],
 		"slug":  vars["slug"],
 	}
-	if err != nil {
-		panic(err)
-	} else {
 		template.Execute(response, data)
-	}
 }
 
 func ParametrosQueryString(response http.ResponseWriter, request *http.Request) {
-	template, err := template.ParseFiles("templates/ejemplo/parametros_querystring.html")
+	template := template.Must(template.ParseFiles("templates/ejemplo/parametros_querystring.html", utilidades.Frontend))
 	data := map[string]string{
 		"id": 	request.URL.Query().Get("id"),
 		"slug": request.URL.Query().Get("slug"),
 	}
-	if err != nil {
-		panic(err)
-	} else {
 		template.Execute(response, data)
-	}
 }
 type Habilidad struct {
 	Nombre string
@@ -62,14 +61,15 @@ type Datos struct {
 	Habilidades []Habilidad
 }
 
-func Estructuras(response http.ResponseWriter, request *http.Request) { // En algunos codigos se le llama w (response) y r (request), pero es lo mismo
-	template, _ := template.ParseFiles("templates/ejemplo/estructuras.html")
+func Estructuras(response http.ResponseWriter, request *http.Request) {
+	template := template.Must(template.ParseFiles("templates/ejemplo/estructuras.html", utilidades.Frontend))
 	habilidad1 := Habilidad{"Inteligencia"}
 	habilidad2 := Habilidad{"Deportes"}
 	habilidad3 := Habilidad{"Cantar"}
 	habilidades := []Habilidad{habilidad1, habilidad2, habilidad3}
 
 	template.Execute(response, Datos{"Norman", 30, 2, habilidades})
+
 	/* 
 		template, err := template.ParseFiles("templates/ejemplo/estructuras.html")
 		if err != nil {
@@ -79,6 +79,14 @@ func Estructuras(response http.ResponseWriter, request *http.Request) { // En al
 		} 
 	*/
 }
+
+func Pagina404(response http.ResponseWriter, request *http.Request) {
+
+	template := template.Must(template.ParseFiles("templates/ejemplo/pagina404.html", utilidades.Frontend))
+	template.Execute(response, nil)
+
+}
+
 
 /* 
 func Home(response http.ResponseWriter, request *http.Request) {

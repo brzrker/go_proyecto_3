@@ -1,0 +1,38 @@
+{{ template "header" }}
+
+    <main class="container">
+        <h1>Esto es un formulario</h1>
+        {{ if ne .css "" }}
+        <div class="alert alert-{{ .css }} alert-dismissible fade show" role="alert">
+            {{ .mensaje }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{ end }}
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/formulario-post" method="POST">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre:</label>
+                        <input name="nombre" type="text" class="form-control" placeholder="Nombre"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="Correo">Correo:</label>
+                        <input name="correo" type="text" class="form-control" placeholder="Correo"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="Telefono">Teléfono:</label>
+                        <input name="telefono" type="text" class="form-control" placeholder="Teléfono"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Contraseña:</label>
+                        <input name="password" type="password" class="form-control" placeholder="Contraseña"/>
+                        <p class="text">La contraseña debe cumplir con un minimo de 8 caracteres, un maximo de 20, una mayuscula, una minuscula y un numero</p>
+                    </div>
+                    <br>
+                    <input type="submit" value="Enviar" class="btn btn-primary"/>
+                </form>
+            </div>
+        </div>
+    </main>
+
+{{ template "footer" }}

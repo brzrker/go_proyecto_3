@@ -1,0 +1,17 @@
+{{ template "header" }}
+
+    <main class="container">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/recursos-utiles">Recursos Útiles</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Crear Excel</li>
+            </ol>
+        </nav>
+
+        <h1>Opciones de Excel</h1>
+        <div class="alert alert-success">Se generó el archivo {{ .nombre }}</div>
+    </main>
+
+{{ template "footer" }}
