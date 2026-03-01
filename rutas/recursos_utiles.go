@@ -122,8 +122,8 @@ func Recursos_utiles_excel(response http.ResponseWriter, request *http.Request) 
 	f.SetActiveSheet(index)
 	// Se agregan datos
 	cliente1 := modelos.Clientes{
-		modelos.Cliente{Id: 1, Nombre: "Júan", Correo: "juan@ejemplo.com"}, 
-		modelos.Cliente{Id: 2, Nombre: "Maria ñ", Correo: "maria@ejemplo.com"},
+		modelos.Cliente{Id: 1, Nombre: "Júan", Correo: "juan@ejemplo.com", Telefono: ""}, 
+		modelos.Cliente{Id: 2, Nombre: "Maria ñ", Correo: "maria@ejemplo.com", Telefono: ""},
 	}
 
 	contador := 2 // Contador para filas, inicia en 2 porque la 1 es para los titulos, es un int

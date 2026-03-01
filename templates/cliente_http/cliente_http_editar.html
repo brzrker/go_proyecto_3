@@ -1,0 +1,29 @@
+{{ template "header" }}
+
+    <main class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/cliente-http">Cliente HTTP</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Editar cliente</li>
+            </ol>
+        </nav>
+
+        <h1>Editar Cliente</h1>
+
+        <form action="/cliente-http/cliente-http-editar-post/{{.id}}" method="POST">
+            <div class="form-group">
+                <label for="Nombre">Nombre:</label>
+                <input 
+                    type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" value="{{.nombre}}"
+                />
+            </div>
+
+            <br>
+            <input type="submit" class="btn btn-primary" value="Enviar"/>
+            <br>
+            <br>
+        </form>        
+    </main>
+
+{{ template "footer" }}

@@ -1,0 +1,38 @@
+{{ template "header" }}
+
+    <main class="container">
+        <h1>Cliente HTTP</h1>
+        <p class="d-flex justify-content-end">
+            <a href="/cliente-http/cliente-http-crear" class="btn btn-success">
+                <i class="fas fa-check"></i>
+                Crear
+            </a>
+        </p>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range .datos }}
+                    <tr>
+                        <td>{{ .Id }}</td>
+                        <td>{{ .Nombre }}</td>
+                        <td>
+                            <a href="/cliente-http/cliente-http-editar/{{.Id}}"><i class="fas fa-edit"></i></a>
+                            <a href="javascript:void(0);" onclick="confirmarSweet('¿Realmente desea eliminar el registro?','/cliente-http/cliente-http-eliminar/{{.Id}}');">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+{{ template "footer" }}

@@ -35,6 +35,23 @@ func main() {
 	mux.HandleFunc("/recursos-utiles/qr", rutas.Recursos_utiles_qr)
 	mux.HandleFunc("/recursos-utiles/enviar-correo", rutas.Recursos_utiles_enviar_correo)
 
+	// Cliente http
+	mux.HandleFunc("/cliente-http", rutas.Cliente_http)
+	mux.HandleFunc("/cliente-http/cliente-http-crear", rutas.Cliente_http_crear)
+	mux.HandleFunc("/cliente-http/cliente-http-crear-post", rutas.Cliente_http_crear_post).Methods("POST")
+	mux.HandleFunc("/cliente-http/cliente-http-editar/{id:.*}", rutas.Cliente_http_editar)
+	mux.HandleFunc("/cliente-http/cliente-http-editar-post/{id:.*}", rutas.Cliente_http_editar_post).Methods("POST")
+	mux.HandleFunc("/cliente-http/cliente-http-eliminar/{id:.*}", rutas.Cliente_http_eliminar)
+
+	// MySQL
+	mux.HandleFunc("/my-sql", rutas.My_SQL_listar)
+	mux.HandleFunc("/my-sql/my-sql-crear", rutas.My_SQL_crear)
+	mux.HandleFunc("/my-sql/my-sql-crear-post", rutas.My_SQL_crear_post).Methods("POST")
+	mux.HandleFunc("/my-sql/my-sql-editar/{id:.*}", rutas.My_SQL_editar)
+	mux.HandleFunc("/my-sql/my-sql-editar-post/{id:.*}", rutas.My_SQL_editar_post).Methods("POST")
+	mux.HandleFunc("/my-sql/my-sql-eliminar/{id:.*}", rutas.My_SQL_eliminar)
+
+
 	// Archivos estaticos
 	s := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	mux.PathPrefix("/static/").Handler(s)
