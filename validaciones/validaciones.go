@@ -14,7 +14,7 @@ func ValidarPassword(s string) bool {
 		hasLower  = false
 		hasNumber = false
 	)
-	if len(s) >= 8 && len(s) <= 20 {
+	if len(s) >= 6 && len(s) <= 20 {
 		hasMinLen = true
 	}
 	for _, char := range s {

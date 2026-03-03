@@ -27,3 +27,13 @@ type ClienteHttp2 struct {
 	Mensaje	string
 	Datos	Cliente
 }
+
+type Usuario struct {
+	Id int
+	Nombre string
+	Correo string
+	Telefono string
+	Password string
+}
+
+type Usuarios []Usuario

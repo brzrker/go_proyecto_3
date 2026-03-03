@@ -76,10 +76,7 @@ func My_SQL_crear_post(response http.ResponseWriter, request *http.Request) {
 	conectar.Conectar()
 
 	sql := "INSERT INTO clientes (nombre, correo, telefono) VALUES (?,?,?)"
-	_, err := conectar.Db.Exec(sql, request.FormValue("nombre"), 
-									request.FormValue("correo"), 
-									request.FormValue("telefono"),
-								)
+	_, err := conectar.Db.Exec(sql, request.FormValue("nombre"), request.FormValue("correo"), request.FormValue("telefono"), )
 	if err != nil {
 		fmt.Println(err)
 	}

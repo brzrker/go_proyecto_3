@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 	"os"
+	"proyecto_3/proteccion"
 	"proyecto_3/rutas"
 	"time"
+
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
@@ -28,28 +30,36 @@ func main() {
 	mux.HandleFunc("/formulario/upload-post", rutas.Formulario_upload_post).Methods("POST")
 
 	// Recursos utiles
-	mux.HandleFunc("/recursos-utiles", rutas.Recursos_utiles_get)
-	mux.HandleFunc("/recursos-utiles/pdf", rutas.Recursos_utiles_pdf)
-	mux.HandleFunc("/recursos-utiles/pdf-generar", rutas.Recursos_utiles_pdf_generar)
-	mux.HandleFunc("/recursos-utiles/excel", rutas.Recursos_utiles_excel)
-	mux.HandleFunc("/recursos-utiles/qr", rutas.Recursos_utiles_qr)
-	mux.HandleFunc("/recursos-utiles/enviar-correo", rutas.Recursos_utiles_enviar_correo)
+	mux.HandleFunc("/recursos-utiles", proteccion.Proteccion(rutas.Recursos_utiles_get))
+	mux.HandleFunc("/recursos-utiles/pdf", proteccion.Proteccion(rutas.Recursos_utiles_pdf))
+	mux.HandleFunc("/recursos-utiles/pdf-generar", proteccion.Proteccion(rutas.Recursos_utiles_pdf_generar))
+	mux.HandleFunc("/recursos-utiles/excel", proteccion.Proteccion(rutas.Recursos_utiles_excel))
+	mux.HandleFunc("/recursos-utiles/qr", proteccion.Proteccion(rutas.Recursos_utiles_qr))
+	mux.HandleFunc("/recursos-utiles/enviar-correo", proteccion.Proteccion(rutas.Recursos_utiles_enviar_correo))
 
 	// Cliente http
-	mux.HandleFunc("/cliente-http", rutas.Cliente_http)
-	mux.HandleFunc("/cliente-http/cliente-http-crear", rutas.Cliente_http_crear)
-	mux.HandleFunc("/cliente-http/cliente-http-crear-post", rutas.Cliente_http_crear_post).Methods("POST")
-	mux.HandleFunc("/cliente-http/cliente-http-editar/{id:.*}", rutas.Cliente_http_editar)
-	mux.HandleFunc("/cliente-http/cliente-http-editar-post/{id:.*}", rutas.Cliente_http_editar_post).Methods("POST")
-	mux.HandleFunc("/cliente-http/cliente-http-eliminar/{id:.*}", rutas.Cliente_http_eliminar)
+	mux.HandleFunc("/cliente-http", proteccion.Proteccion(rutas.Cliente_http))
+	mux.HandleFunc("/cliente-http/cliente-http-crear", proteccion.Proteccion(rutas.Cliente_http_crear))
+	mux.HandleFunc("/cliente-http/cliente-http-crear-post", proteccion.Proteccion(rutas.Cliente_http_crear_post)).Methods("POST")
+	mux.HandleFunc("/cliente-http/cliente-http-editar/{id:.*}", proteccion.Proteccion(rutas.Cliente_http_editar))
+	mux.HandleFunc("/cliente-http/cliente-http-editar-post/{id:.*}", proteccion.Proteccion(rutas.Cliente_http_editar_post)).Methods("POST")
+	mux.HandleFunc("/cliente-http/cliente-http-eliminar/{id:.*}", proteccion.Proteccion(rutas.Cliente_http_eliminar))
 
 	// MySQL
-	mux.HandleFunc("/my-sql", rutas.My_SQL_listar)
-	mux.HandleFunc("/my-sql/my-sql-crear", rutas.My_SQL_crear)
-	mux.HandleFunc("/my-sql/my-sql-crear-post", rutas.My_SQL_crear_post).Methods("POST")
-	mux.HandleFunc("/my-sql/my-sql-editar/{id:.*}", rutas.My_SQL_editar)
-	mux.HandleFunc("/my-sql/my-sql-editar-post/{id:.*}", rutas.My_SQL_editar_post).Methods("POST")
-	mux.HandleFunc("/my-sql/my-sql-eliminar/{id:.*}", rutas.My_SQL_eliminar)
+	mux.HandleFunc("/my-sql", proteccion.Proteccion(rutas.My_SQL_listar))
+	mux.HandleFunc("/my-sql/my-sql-crear", proteccion.Proteccion(rutas.My_SQL_crear))
+	mux.HandleFunc("/my-sql/my-sql-crear-post", proteccion.Proteccion(rutas.My_SQL_crear_post)).Methods("POST")
+	mux.HandleFunc("/my-sql/my-sql-editar/{id:.*}", proteccion.Proteccion(rutas.My_SQL_editar))
+	mux.HandleFunc("/my-sql/my-sql-editar-post/{id:.*}", proteccion.Proteccion(rutas.My_SQL_editar_post)).Methods("POST")
+	mux.HandleFunc("/my-sql/my-sql-eliminar/{id:.*}", proteccion.Proteccion(rutas.My_SQL_eliminar))
+
+	// Seguridad
+	mux.HandleFunc("/seguridad/registro", rutas.Seguridad_registro)
+	mux.HandleFunc("/seguridad/registro-post", rutas.Seguridad_registro_post).Methods("POST")
+	mux.HandleFunc("/seguridad/login", rutas.Seguridad_login)
+	mux.HandleFunc("/seguridad/login-post", rutas.Seguridad_login_post).Methods("POST")
+	mux.HandleFunc("/seguridad/protegida", proteccion.Proteccion(rutas.Seguridad_protegida))
+	mux.HandleFunc("/seguridad/logout", proteccion.Proteccion(rutas.Seguridad_logout))
 
 
 	// Archivos estaticos

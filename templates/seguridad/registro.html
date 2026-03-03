@@ -1,0 +1,37 @@
+{{ template "header" }}
+
+    <main class="container">
+        <h1>Registro asdads</h1>
+
+        {{ if ne .css "" }}
+        <div class="alert alert-{{ .css }} alert-dismissible fade show" role="alert">
+            {{ .mensaje }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{ end }}
+
+        <form action="/seguridad/registro-post" method="post">
+            <div class="form-group">
+                <label for="Nombre">Nombre:</label>
+                <input name="nombre" type="text" id="nombre" class="form-control" placeholder="Nombre"/>
+            </div>
+            <div class="form-group">
+                <label for="Correo">Correo:</label>
+                <input name="correo" type="text" id="correo" class="form-control" placeholder="Correo"/>
+            </div>
+            <div class="form-group">
+                <label for="Telefono">Telefono:</label>
+                <input name="telefono" type="text" id="telefono" class="form-control" placeholder="Telefono"/>
+            </div>
+            <div>
+                <label for="Password">Contraseña</label>
+                <input name="password" type="password" id="password" class="form-control" placeholder="Contraseña"/>
+            </div>
+            <br>
+            <input type="submit" value="Crear Usuario" class="btn btn-primary"/>
+            <br>
+            <br>
+        </form>
+    </main>
+
+{{ template "footer" }}

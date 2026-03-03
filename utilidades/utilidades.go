@@ -55,6 +55,20 @@ func EnviarCorreo() {
 	if err := n.DialAndSend(mensaje); err != nil {
 		panic(err)
 	}
+}
 
+func RetornarLogin(request *http.Request) (string, string) {
+	session, _ := Store.Get(request, "session-name")
+	hola_id := ""
+	hola_nombre := ""
+	if session.Values["hola_id"] != nil {
+		hola_id_t, _ := session.Values["hola_id"].(string) // se crea una segunda variable para que no de error
+		hola_id = hola_id_t
+	}
+		if session.Values["hola_nombre"] != nil {
+		hola_nombre_t, _ := session.Values["hola_nombre"].(string) // se crea una segunda variable para que no de error
+		hola_nombre = hola_nombre_t
+	}
+	return hola_id, hola_nombre
 
 }
