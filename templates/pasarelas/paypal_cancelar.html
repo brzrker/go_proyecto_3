@@ -1,0 +1,15 @@
+{{ template "header" }}
+
+    <main class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/pasarelas">Pasarelas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Paypal Cancelado</li>
+            </ol>
+        </nav>
+        <h1>Paypal Cancelado</h1>
+        <div class="alert alert-warning">La transacción {{ .token }} fue cancelada</div>
+    </main>
+
+{{ template "footer" }}

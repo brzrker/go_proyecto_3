@@ -61,6 +61,13 @@ func main() {
 	mux.HandleFunc("/seguridad/protegida", proteccion.Proteccion(rutas.Seguridad_protegida))
 	mux.HandleFunc("/seguridad/logout", proteccion.Proteccion(rutas.Seguridad_logout))
 
+	// Pasarelas
+	mux.HandleFunc("/pasarelas", proteccion.Proteccion(rutas.Pasarelas))
+	mux.HandleFunc("/pasarelas/webpay", proteccion.Proteccion(rutas.Pasarelas_webpay))
+	mux.HandleFunc("/pasarelas/webpay/retorno", proteccion.Proteccion(rutas.Pasarelas_webpay_retorno))
+	mux.HandleFunc("/pasarelas/paypal", proteccion.Proteccion(rutas.Pasarelas_paypal))
+	mux.HandleFunc("/pasarelas/paypal/retorno", proteccion.Proteccion(rutas.Pasarelas_paypal_retorno))
+	mux.HandleFunc("/pasarelas/paypal/cancelar", proteccion.Proteccion(rutas.Pasarelas_paypal_cancelar))
 
 	// Archivos estaticos
 	s := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))

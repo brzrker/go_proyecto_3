@@ -1,0 +1,19 @@
+{{ template "header" }}
+
+    <main class="container">
+        <h1>Pasarelas</h1>
+        <ul>
+            <li><strong>Producto: </strong>Mesa de computador</li>
+            <li><strong>Valor: </strong>$10.000</li>
+            <li><strong>Cantidad: </strong>1</li>
+            <li><strong>Orden de compra: </strong>123123</li>
+            <li><strong>URL: </strong>{{ .url }}</li>
+            <li><strong>Token: </strong>{{ .token }}</li>
+        </ul>
+        <form action="{{ .url }}" method="POST" name="form">
+            <input type="hidden" name="token_ws" id="token_ws" value="{{ .token }}" />
+            <a href="javascript:void(0);" onclick="document.form.submit();" class="btn btn-danger"><i class="fas fa-dollar-sign"> Pagar</i></a>
+        </form>
+    </main>
+
+{{ template "footer" }}

@@ -37,3 +37,29 @@ type Usuario struct {
 }
 
 type Usuarios []Usuario
+
+type WebpayModel struct{
+	Url string
+	Token string
+}
+
+type WebpayRetornoModel struct{
+	Vci string
+	Amount int
+	Status string
+	Buy_order string
+	Session_id string
+	Card_detail map[string]string
+	Accounting_date string
+	Transaction_date string
+	Authorization_code string
+	Payment_type_code string
+	Response_code int
+	Installments_number int
+}
+
+type PaypalOrderResponseModel struct{
+	Id string
+	Status string
+	Links string
+}

@@ -1,6 +1,6 @@
 module proyecto_3
 
-go 1.25.0
+go 1.25.1
 
 require (
 	github.com/go-sql-driver/mysql v1.9.3
@@ -8,6 +8,7 @@ require (
 	github.com/gorilla/sessions v1.4.0
 	github.com/joho/godotenv v1.5.1
 	github.com/jung-kurt/gofpdf v1.16.2
+	github.com/plutov/paypal/v4 v4.17.0
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/xuri/excelize/v2 v2.10.0
 	golang.org/x/crypto v0.43.0

@@ -1,0 +1,16 @@
+{{ template "header" }}
+
+    <main class="container">
+        <h1>PayPal Respuesta</h1>
+        {{ if eq .estado_paypal "bien" }}
+        <div class="alert alert-success">
+            Tu pedido {{ .token }} se procesó exitosamente
+        </div>
+        {{ else }}
+        <div class="alert alert-danger">
+            Tu pedido {{ .token }} no se procesó exitosamente
+        </div>
+        {{ end }}
+    </main>
+
+{{ template "footer" }}

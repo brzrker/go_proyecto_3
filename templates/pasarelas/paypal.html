@@ -1,0 +1,16 @@
+{{ template "header" }}
+
+    <main class="container">
+        <h1>Pasarelas PayPal</h1>
+        <ul>
+            <li><strong>Producto: </strong>Mesa de computador</li>
+            <li><strong>Valor: </strong>USD $10</li>
+            <li><strong>Cantidad: </strong>1</li>
+            <li><strong>Orden de compra: </strong>123123</li>
+            <li><strong>URL: </strong>https://www.sandbox.paypal.com/checkoutnow?token={{.paypal_id}}</li>
+            <li><strong>Token: </strong>{{ .token }}</li>
+        </ul>
+        <a href="https://www.sandbox.paypal.com/checkoutnow?token={{.paypal_id}}" class="btn btn-warning"><i class="fab fa-paypal"> Pagar</i></a>
+    </main>
+
+{{ template "footer" }}
